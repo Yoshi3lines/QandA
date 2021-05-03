@@ -14,11 +14,18 @@
         <% @questions.each do |question| %>
           <tr>
             <td><%= question.id %></td>
-            <td><%= question.title %></td>
-            <td>[Edit] [Delete]</td>
+            <td><%= link_to question.title, question_path(question) %></td>
+            <td>
+              [ <%= link_to 'Edit', edit_question_path(question) %> ]
+              [ <%= link_to 'Delete', question_path(question), method: :delete,
+                    data:{confirm: '削除してよろしいですか？'} %> ]
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <div>
+      <%= link_to 'New question', new_question_path, class: "btn btn-primary btn-lg" %>
+    </div>
   </div>
 </div>
